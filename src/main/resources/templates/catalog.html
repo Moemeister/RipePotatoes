@@ -12,6 +12,7 @@
         <tr th:each="catalog: ${catalog}">
             <td><img th:src="@{https://image.tmdb.org/t/p/w200/{image}(image=${catalog.getPoster_path()})}"></td>
             <td th:text="${catalog.getTitle()}"></td>
+            <td th:text="${catalog.getOriginal_title()}"></td>
             <td><a th:text="${catalog.getOverview()}"></a></td>
         </tr>
     </table>

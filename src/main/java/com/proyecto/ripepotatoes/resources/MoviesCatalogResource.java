@@ -32,7 +32,7 @@ public class MoviesCatalogResource {
         //return (restTemplate.getForObject("https://api.themoviedb.org/3/movie/"+movieId+"?api_key="+apiKey+"&language=en-US",Movie.class));
         //returns all movies
         Integer page =1;
-        MovieWrapper movieWrapper= restTemplate.getForObject("https://api.themoviedb.org/3/movie/popular?api_key="+apiKey+"&language=en-US&page="+page, MovieWrapper.class);
+        MovieWrapper movieWrapper= restTemplate.getForObject("https://api.themoviedb.org/3/movie/popular?api_key="+apiKey+"&language=es-ES&page="+page, MovieWrapper.class);
         List<Movie> allMovies= movieWrapper.getResults();
         mav.addObject("catalog",allMovies);
         mav.setViewName("catalog");
