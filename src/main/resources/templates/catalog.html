@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<head>
+    <meta charset="UTF-8">
+    <title>Catalogo de Peliculas</title>
+</head>
+<body>
+<div class="col-sm-12">
+    <h3 class="center-pill">Movies</h3>
+    <table class="table table-hover">
+        <tr th:each="catalog: ${catalog}">
+            <td th:href="${catalog.getPoster_path()}"></td>
+            <td th:text="${catalog.getTitle()}"></td>
+            <td><a th:text="${catalog.getOverview()}"></a></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
