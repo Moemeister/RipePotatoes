@@ -33,7 +33,7 @@ public class Usuario {
     private String username;
 
     @NotNull(message = "Este campo es obligatorio")
-    @Length(min = 8, message = "La contraseña debe contener 8 caracteres")
+    //@Length(min = 8, message = "La contraseña debe contener 8 caracteres")
     @Column(name="pass")
     private String pass;
 
