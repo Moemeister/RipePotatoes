@@ -7,6 +7,9 @@
 </head>
 <body>
 <div class="col-sm-12">
+    <form  th:action="@{/profile}" method="GET">
+        <input type="submit" value="Perfil">
+    </form>
     <h3 class="center-pill">Movies</h3>
     <table class="table table-hover">
         <tr th:each="catalog: ${catalog}">

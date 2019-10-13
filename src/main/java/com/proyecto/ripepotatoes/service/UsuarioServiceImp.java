@@ -42,4 +42,12 @@ public class UsuarioServiceImp implements UsuarioService {
         }
         return isUserAlreadyExists;
     }
+    @Override
+    public Usuario findOne(Integer id) {
+        return usuarioRepository.getOne(id);
+    }
+    @Override
+    public Usuario findByUsername(String username){
+        return usuarioRepository.findByUsername(username);
+    }
 }
