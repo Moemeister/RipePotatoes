@@ -10,7 +10,7 @@
     <h3 class="center-pill">Movies</h3>
     <table class="table table-hover">
         <tr th:each="catalog: ${catalog}">
-            <td th:href="${catalog.getPoster_path()}"></td>
+            <td><img th:src="@{https://image.tmdb.org/t/p/w200/{image}(image=${catalog.getPoster_path()})}"></td>
             <td th:text="${catalog.getTitle()}"></td>
             <td><a th:text="${catalog.getOverview()}"></a></td>
         </tr>
