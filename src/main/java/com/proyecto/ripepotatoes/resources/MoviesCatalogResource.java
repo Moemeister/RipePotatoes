@@ -4,7 +4,6 @@ import com.proyecto.ripepotatoes.models.Movie;
 import com.proyecto.ripepotatoes.models.MovieWrapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -35,7 +34,7 @@ public class MoviesCatalogResource {
         MovieWrapper movieWrapper= restTemplate.getForObject("https://api.themoviedb.org/3/movie/popular?api_key="+apiKey+"&language=en-US&page="+page, MovieWrapper.class);
         List<Movie> allMovies= movieWrapper.getResults();
         mav.addObject("catalog",allMovies);
-        mav.setViewName("catalog");
+        mav.setViewName("home/catalog");
         return mav;
     }
 }

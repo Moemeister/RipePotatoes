@@ -6,4 +6,6 @@ public interface UsuarioService {
 
     public void save(Usuario usuario);
     public Boolean isUserAlreadyPresent(Usuario usuario);
+    public Usuario findOne(Integer id);
+    public Usuario findByUsername(String username);
 }
