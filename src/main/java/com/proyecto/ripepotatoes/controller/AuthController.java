@@ -3,6 +3,7 @@ package com.proyecto.ripepotatoes.controller;
 import com.proyecto.ripepotatoes.domain.Usuario;
 import com.proyecto.ripepotatoes.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -20,9 +21,13 @@ public class AuthController {
     UsuarioService usuarioService;
 
     @GetMapping(value = {"/","/login"})
-    public ModelAndView login(){
+    public ModelAndView login(Principal principal){
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("login");
+        if(principal != null && ((Authentication)principal).isAuthenticated()){
+            mav.setViewName("redirect:/allmovies");
+        }else{
+            mav.setViewName("login");
+        }
         return mav;
     }
 
