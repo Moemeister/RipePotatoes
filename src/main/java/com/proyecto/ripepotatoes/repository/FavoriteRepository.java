@@ -5,8 +5,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface FavoriteRepository extends JpaRepository<Favorito,Integer> {
 
     public Favorito findByIdPeliApi(Integer id);
+    public List<Favorito> findByIdusuario(Integer id);
 }

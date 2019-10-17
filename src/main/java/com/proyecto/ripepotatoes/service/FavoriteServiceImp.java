@@ -6,6 +6,8 @@ import com.proyecto.ripepotatoes.repository.FavoriteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class FavoriteServiceImp implements FavoriteService {
 
@@ -38,5 +40,10 @@ public class FavoriteServiceImp implements FavoriteService {
     @Override
     public Favorito findByIdPeliApi(Integer id) {
         return favoriteRepository.findByIdPeliApi(id);
+    }
+
+    @Override
+    public List<Favorito> findByIdusuario(Integer id) {
+        return favoriteRepository.findByIdusuario(id);
     }
 }

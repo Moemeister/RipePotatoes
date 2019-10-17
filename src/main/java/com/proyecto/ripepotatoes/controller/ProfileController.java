@@ -1,6 +1,7 @@
 package com.proyecto.ripepotatoes.controller;
 
 import com.proyecto.ripepotatoes.domain.Usuario;
+import com.proyecto.ripepotatoes.service.FavoriteService;
 import com.proyecto.ripepotatoes.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,9 @@ public class ProfileController {
 
     @Autowired
     UsuarioService usuarioService;
+
+    @Autowired
+    FavoriteService favoriteService;
 
     @GetMapping("/profile")
     public ModelAndView profile(Principal usuario){
