@@ -1,24 +1,39 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 <head>
     <meta charset="UTF-8">
     <title>Catalogo de Peliculas</title>
 </head>
+
 <body>
-<div class="col-sm-12">
-    <form  th:action="@{/profile}" method="GET">
-        <input type="submit" value="Perfil">
-    </form>
-    <h3 class="center-pill">Movies</h3>
-    <table class="table table-hover">
-        <tr th:each="catalog: ${catalog}">
-            <td><img th:src="@{https://image.tmdb.org/t/p/w200/{image}(image=${catalog.getPoster_path()})}"></td>
-            <td th:text="${catalog.getTitle()}"></td>
-            <td th:text="${catalog.getOriginal_title()}"></td>
-            <td><a th:text="${catalog.getOverview()}"></a></td>
-        </tr>
-    </table>
-</div>
+    <div class="col-sm-12">
+        <form th:action="@{/profile}" method="GET">
+            <input type="submit" class="btn btn-info" value="Perfil">
+        </form>
+        <form th:action="@{/logout}" method="GET">
+            <input type="submit" class="btn btn-info" value="Cerrar Sesión">
+        </form>
+        <h3 class="center-pill">Movies</h3>
+        <table class="table table-hover">
+            <tr th:each="catalog: ${catalog}">
+                <td><img th:src="@{https://image.tmdb.org/t/p/w200/{image}(image=${catalog.getPoster_path()})}"></td>
+                <td th:text="${catalog.getTitle()}"></td>
+                <td th:text="${catalog.getOriginal_title()}"></td>
+                <td><a th:text="${catalog.getOverview()}"></a></td>
+                <td>
+                    <form th:action="@{/addFavorites}" method="post">
+                        <input type="hidden" th:value="${catalog.getId()}" name="id_peli">
+                        <input type="submit" class="btn btn-secondary" value="Add to Favorites">
+                    </form>
+                </td>
+
+
+            </tr>
+        </table>
+    </div>
 </body>
+
 </html>
