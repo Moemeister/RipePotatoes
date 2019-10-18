@@ -30,7 +30,8 @@ public class FavoriteServiceImp implements FavoriteService {
     @Override
     public Boolean isFavoriteAlreadyAdded(Integer id_peli,Usuario usuario) {
         Boolean isAlreadyAdded = false;
-        Favorito existing = favoriteRepository.findByIdPeliApi(id_peli);
+        System.out.println(id_peli);
+        Favorito existing = favoriteRepository.findByIdPeliApiAndIdusuario(id_peli,usuario.getId());
         if(existing != null && existing.getIdusuario() == usuario.getId()){
             isAlreadyAdded = true;
         }
@@ -39,7 +40,7 @@ public class FavoriteServiceImp implements FavoriteService {
 
     @Override
     public Favorito findByIdPeliApi(Integer id) {
-        return favoriteRepository.findByIdPeliApi(id);
+        return null;
     }
 
     @Override

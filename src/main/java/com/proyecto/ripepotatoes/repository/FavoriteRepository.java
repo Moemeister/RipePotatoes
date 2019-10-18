@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface FavoriteRepository extends JpaRepository<Favorito,Integer> {
 
-    public Favorito findByIdPeliApi(Integer id);
+    public Favorito findByIdPeliApiAndIdusuario(Integer id,Integer idusuario);
     public List<Favorito> findByIdusuario(Integer id);
 }
