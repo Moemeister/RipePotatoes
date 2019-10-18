@@ -23,5 +23,27 @@ public class Favorito {
     @Column(name = "idusuario")
     private int idusuario;
 
+    public int getId_favorito() {
+        return id_favorito;
+    }
 
+    public void setId_favorito(int id_favorito) {
+        this.id_favorito = id_favorito;
+    }
+
+    public int getIdPeliApi() {
+        return idPeliApi;
+    }
+
+    public void setIdPeliApi(int idPeliApi) {
+        this.idPeliApi = idPeliApi;
+    }
+
+    public int getIdusuario() {
+        return idusuario;
+    }
+
+    public void setIdusuario(int idusuario) {
+        this.idusuario = idusuario;
+    }
 }

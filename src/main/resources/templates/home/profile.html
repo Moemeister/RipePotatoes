@@ -22,5 +22,17 @@
         </tr>
     </tbody>
 </table>
+<h3 class="center-pill">Movies</h3>
+<table class="table table-hover">
+    <tr th:each="favMovies: ${favMovies}">
+        <td><img th:src="@{https://image.tmdb.org/t/p/w200/{image}(image=${favMovies.getPoster_path()})}"></td>
+        <td th:text="${favMovies.getTitle()}"></td>
+        <td th:text="${favMovies.getOriginal_title()}"></td>
+        <td><a th:text="${favMovies.getOverview()}"></a></td>
+        </td>
+
+
+    </tr>
+</table>
 </body>
 </html>

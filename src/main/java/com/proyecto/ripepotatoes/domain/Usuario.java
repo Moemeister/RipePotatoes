@@ -44,5 +44,8 @@ public class Usuario {
     @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "idusuario"), inverseJoinColumns = @JoinColumn(name = "id_rol"))
     private Set<Rol> roles;
 
+    public int getId() {
+        return id;
+    }
 }
 
