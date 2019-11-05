@@ -51,21 +51,28 @@
 
             <div th:each="catalog: ${catalog}" class = "d-flex justify-content-center">
                 <div class="card flex-md-row mb-4 box-shadow h-md-250" style = "width: 800px;">
-                    <img class="img-fluid card-img-right flex-auto d-none d-md-block"  th:src="@{https://image.tmdb.org/t/p/w200/{image}(image=${catalog.getPoster_path()})}" alt="Card image cap">
+                    <img class="img-fluid card-img-right flex-auto d-none d-md-block" style="height: 18rem;width: 15rem;" th:src="@{https://image.tmdb.org/t/p/w200/{image}(image=${catalog.getPoster_path()})}" alt="Card image cap">
                     <div class="card-body d-flex flex-column align-items-start">
                         <h3 class="mb-0">
-                            <p class="text-dark" th:text="${catalog.getTitle()}"></p>
+                            <p class="text-dark" th:text = "${catalog.getTitle()}"></p>
                         </h3>
-                        <p class="h6 mb-auto" th:text="${catalog.getOriginal_title()}"></p>
+                        <p class="h6 mb-auto" th:text = "${catalog.getOriginal_title()}"></p>
                         <p class="h6 mb-auto" th:text="${catalog.getOverview()}"></p>
-                        <div class="btn-group d-flex justify-content-end " style="height: 40px;padding-top: 8px;">
-                            <form th:action="@{/addFavorites}" method="post">
-                                <input type="hidden" th:value="${catalog.getId()}" name="id_peli">
-                                <input type="submit" class="btn btn-outline-info" value="Add to Favorites">
-                            </form>
-
                     </div>
-
+                    <div class="btn-group d-flex justify-content-end mr-3 " style="height: 40px;padding-top: 8px;">
+                        <form th:action="@{/movieDetail}" method="post">
+                            <input type="hidden" th:value="${catalog.getId()}" name = "id_peli">
+                            <button type="submit" class="btn btn-info bmd-btn-fab bmd-btn-fab-sm">
+                                <span data-feather="eye"></span>
+                            </button>
+                        </form>
+                        <br>
+                        <form th:action="@{/addFavorites}" method="post">
+                            <input type="hidden" th:value="${catalog.getId()}" name="id_peli">
+                            <button type="submit" class="btn btn-info bmd-btn-fab bmd-btn-fab-sm">
+                                <span data-feather="heart"></span>
+                            </button>
+                        </form>
                     </div>
                     </div>
                 </div>
