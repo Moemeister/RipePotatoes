@@ -1,0 +1,114 @@
+<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link href="/css/bootstrap-material-design.min.css" rel="stylesheet">
+<link href="/css/dashboard.css" rel="stylesheet">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style>
+p{
+margin-bottom: 0.3rem;
+}
+</style>
+</head>
+<body>
+<!--<include file="navigationbar.html"> para no repetir codigo-->
+<nav class="navbar navbar-dark sticky-top bg-orange flex-md-nowrap p-0">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Nombre de sitio web</a>
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" th:href="@{/logout}">Cerrar Sesión</a>
+        </li>
+    </ul>
+</nav>
+
+<nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <div class = "container d-flex justify-content-center">
+        <img class="mb-4 mt-3 img-fluid" src="/images/RipePotatoes.png" alt="" width="200">
+    </div>
+    <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/allmovies}">
+                    <span data-feather="film"></span>
+                    Películas <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/allbooks}">
+                    <span data-feather="book-open"></span>
+                    Libros
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/profile}">
+                    <span data-feather="user"></span>
+                    Perfil
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+	<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <h1 class="h2">Películas</h1>
+          </div>
+        <div class = "container mt-4">
+            <div class="row">
+                <div class="col-md-5">
+                  <div class="row">
+                        <div class="col-md-5">
+                            <img class="img-fluid card-img-right flex-auto d-none d-md-block" style="height: 13rem;width: 10rem;" th:src="@{https://image.tmdb.org/t/p/w200/{image}(image=${movie.getPoster_path()})}" alt="Card image cap">
+                        </div>
+                        <div class="col-md-7">
+                            <div class="d-flex flex-column align-items-start">
+                          <h3 class="mb-0">
+                            <a class="text-dark" th:text="${movie.getTitle()}"></a>
+                          </h3>
+                          <div class = "mt-2 d-flex flex-row">
+                              <span data-feather="clock"></span><p class = "card-text ml-1" th:text=" ${movie.getRuntime()}"> </p>
+                              <p class = "card-text ml-1 mr-1">minutos</p>
+                          </div>
+                           <div class = "mt-2 mb-1 d-flex flex-row">
+                                <strong class="d-inline-block mr-1">Fecha de estreno:</strong>
+                                <p class = "card-text" th:text = "${movie.getRelease_date()}"></p>
+                           </div>
+                            </div>
+                        </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                        <div class="d-flex flex-column align-items-start">
+                             <strong class="d-inline-block mb-1 mt-2 text-info">Sinopsis</strong>
+                              <p class="card-text mb-auto" th:text="${movie.getOverview()}"></p>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <div class = "d-flex justify-content-center col-md-7">
+                    <div class="card box-shadow" style = "width: 800px;height:300px;">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Puntaje</h5>
+
+                        </div>
+                        <div class="card-footer text-muted">
+                            Tu valoración
+                        </div>
+                        </div>
+                    </div>
+                </div>
+          </div>
+      </div>
+    </main>
+     <!--codigo se puede reducir con un include-->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+        <script src="/js/bootstrap-material-design.min.js"></script>
+        <script src="/js/feather.js"></script>
+        <script>
+            feather.replace()
+        </script>
+        <script  src="/js/jquery.min.js"></script>
+</body>
+</html>
