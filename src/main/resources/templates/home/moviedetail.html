@@ -1,7 +1,9 @@
-<html>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <link href="/css/bootstrap-material-design.min.css" rel="stylesheet">
 <link href="/css/dashboard.css" rel="stylesheet">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css">
+<link href="/css/starrr.css" rel="stylesheet">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
@@ -50,56 +52,64 @@ margin-bottom: 0.3rem;
     </div>
 </nav>
 
-	<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
             <h1 class="h2">Películas</h1>
-          </div>
+        </div>
         <div class = "container mt-4">
             <div class="row">
                 <div class="col-md-5">
-                  <div class="row">
+                    <div class="row">
                         <div class="col-md-5">
                             <img class="img-fluid card-img-right flex-auto d-none d-md-block" style="height: 13rem;width: 10rem;" th:src="@{https://image.tmdb.org/t/p/w200/{image}(image=${movie.getPoster_path()})}" alt="Card image cap">
                         </div>
                         <div class="col-md-7">
                             <div class="d-flex flex-column align-items-start">
-                          <h3 class="mb-0">
-                            <a class="text-dark" th:text="${movie.getTitle()}"></a>
-                          </h3>
-                          <div class = "mt-2 d-flex flex-row">
-                              <span data-feather="clock"></span><p class = "card-text ml-1" th:text=" ${movie.getRuntime()}"> </p>
-                              <p class = "card-text ml-1 mr-1">minutos</p>
-                          </div>
-                           <div class = "mt-2 mb-1 d-flex flex-row">
-                                <strong class="d-inline-block mr-1">Fecha de estreno:</strong>
-                                <p class = "card-text" th:text = "${movie.getRelease_date()}"></p>
-                           </div>
+                                <h3 class="mb-0">
+                                    <a class="text-dark" th:text="${movie.getTitle()}"></a>
+                                </h3>
+                                <div class = "mt-2 d-flex flex-row">
+                                    <span data-feather="clock"></span><p class = "card-text ml-1" th:text=" ${movie.getRuntime()}"> </p>
+                                    <p class = "card-text ml-1 mr-1">minutos</p>
+                                </div>
+                                <div class = "mt-2 mb-1 d-flex flex-row">
+                                    <strong class="d-inline-block mr-1">Fecha de estreno:</strong>
+                                    <p class = "card-text" th:text = "${movie.getRelease_date()}"></p>
+                                </div>
                             </div>
                         </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                        <div class="d-flex flex-column align-items-start">
-                             <strong class="d-inline-block mb-1 mt-2 text-info">Sinopsis</strong>
-                              <p class="card-text mb-auto" th:text="${movie.getOverview()}"></p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="d-flex flex-column align-items-start">
+                                <strong class="d-inline-block mb-1 mt-2 text-info">Sinopsis</strong>
+                                <p class="card-text mb-auto" th:text="${movie.getOverview()}"></p>
+                            </div>
                         </div>
                     </div>
-                  </div>
                 </div>
                 <div class = "d-flex justify-content-center col-md-7">
-                    <div class="card box-shadow" style = "width: 800px;height:300px;">
-                        <div class="card-body text-center">
+                    <div class="card box-shadow text-center" style = "width: 800px;height:300px;">
+                        <div class="card-body">
                             <h5 class="card-title">Puntaje</h5>
 
                         </div>
                         <div class="card-footer text-muted">
                             Tu valoración
-                        </div>
+                            <div class = "container ml-1">
+                                <div class='starrr' id='star1'></div>
+                                <div>&nbsp;
+                                    <span class='your-choice-was' style='display: none;'>
+                                    Tu rating fue de <span class='choice'></span>.
+                                  </span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-          </div>
-      </div>
+            </div>
+        </div>
+        </div>
     </main>
      <!--codigo se puede reducir con un include-->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -110,5 +120,21 @@ margin-bottom: 0.3rem;
             feather.replace()
         </script>
         <script  src="/js/jquery.min.js"></script>
-</body>
+<script src="/js/starrr.js"></script>
+<script>
+    $('#star1').starrr({
+        change: function(e, value){
+            if (value) {
+                $('.your-choice-was').show();
+                var seleccionado = $('.choice').text(value);
+                //TODO : Funcion ajax que actualice a la base datos
+
+            } else {
+                $('.your-choice-was').hide();
+            }
+        }
+    });
+
+</script>
+    </body>
 </html>
