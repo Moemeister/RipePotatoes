@@ -121,14 +121,28 @@ margin-bottom: 0.3rem;
         </script>
         <script  src="/js/jquery.min.js"></script>
 <script src="/js/starrr.js"></script>
-<script>
+<script th:inline="javascript">
     $('#star1').starrr({
         change: function(e, value){
             if (value) {
                 $('.your-choice-was').show();
                 var seleccionado = $('.choice').text(value);
-                //TODO : Funcion ajax que actualice a la base datos
-
+                var rating = {
+                    idPeliApi:[[${movie}]].id,
+                    idUsuario:[[${user}]].id,
+                    rating_value:value
+                };
+                console.log(rating);
+                var url =/*[[@{/saveRating}]]*/ '';
+                $.ajax({
+                    url:url,
+                    data:JSON.stringify((rating)),
+                    contentType: "application/json",
+                    type:"POST",
+                    success: function (response){
+                        console.log(response);
+                    }
+                })
             } else {
                 $('.your-choice-was').hide();
             }
