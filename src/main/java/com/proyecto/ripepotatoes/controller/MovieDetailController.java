@@ -1,17 +1,18 @@
 package com.proyecto.ripepotatoes.controller;
 
-import com.proyecto.ripepotatoes.domain.Favorito;
+import com.proyecto.ripepotatoes.domain.RatingDTO;
+import com.proyecto.ripepotatoes.domain.Response;
 import com.proyecto.ripepotatoes.domain.Usuario;
 import com.proyecto.ripepotatoes.models.MovieDetails;
-import com.proyecto.ripepotatoes.service.FavoriteService;
+import com.proyecto.ripepotatoes.service.RatingService;
 import com.proyecto.ripepotatoes.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,7 +28,7 @@ public class MovieDetailController {
     UsuarioService usuarioService;
 
     @Autowired
-    FavoriteService favoriteService;
+    RatingService ratingService;
 
     RestTemplate restTemplate = new RestTemplate();
 
@@ -48,5 +49,14 @@ public class MovieDetailController {
         mav.addObject("user",user);
         mav.setViewName("/home/moviedetail");
         return mav;
+    }
+
+    @PostMapping("/saveRating")
+
+    public @ResponseBody
+    Response
+    save(@RequestBody RatingDTO rating ){
+        ratingService.save(rating.getIdPeliApi(), rating.getIdUsuario(),rating.getRating_value());
+        return new Response(200, "OK");
     }
 }
