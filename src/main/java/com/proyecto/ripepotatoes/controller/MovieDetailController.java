@@ -1,5 +1,6 @@
 package com.proyecto.ripepotatoes.controller;
 
+import com.proyecto.ripepotatoes.domain.Rating;
 import com.proyecto.ripepotatoes.domain.RatingDTO;
 import com.proyecto.ripepotatoes.domain.Response;
 import com.proyecto.ripepotatoes.domain.Usuario;
@@ -56,7 +57,12 @@ public class MovieDetailController {
     public @ResponseBody
     Response
     save(@RequestBody RatingDTO rating ){
-        ratingService.save(rating.getIdPeliApi(), rating.getIdUsuario(),rating.getRating_value());
+        if(ratingService.isAlreadyVoted(rating.getIdPeliApi(),rating.getIdUsuario() )){
+            Rating rating1 = ratingService.findByIdPeliApiAndIdUsuario(rating.getIdPeliApi(),rating.getIdUsuario());
+            ratingService.save(rating1.getId_rating(), rating.getIdPeliApi(), rating.getIdUsuario(),rating.getRating_value());
+        }else{
+            ratingService.save(rating.getIdPeliApi(), rating.getIdUsuario(),rating.getRating_value());
+        }
         return new Response(200, "OK");
     }
 }
