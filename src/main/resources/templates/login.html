@@ -6,12 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
 </head>
 <body>
 <div class="login-page">
     <div class="form">
         <img src="/images/RipePotatoes.png">
         <form class="login-form" th:action="@{/login}" method="POST">
+
             <input type="text" name="username" th:placeholder="username">
             <input type="password" name="pass" th:placeholder="pass">
             <button type="submit" th:text="Login">Login</button>
@@ -20,4 +23,19 @@
 </div>
 <img src="/images/potato1.png" width="600px" height="500px" class="center">
 </body>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    var varr = /*[[${param.error}]]*/ 'default';
+    if(varr){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Usuario o Contraseña incorrectos',
+        })
+    }
+
+    /*]]>*/
+</script>
 </html>

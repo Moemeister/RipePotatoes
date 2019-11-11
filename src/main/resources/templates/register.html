@@ -1,22 +1,57 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link href="/css/style.css" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 </head>
 <body>
-<form th:action="@{/register}" th:object="${usuario}" method="POST">
-    <input type="text" th:field="*{nombre}" placeholder="nombre">
-    <input type="text" th:field="*{apellido}" placeholder="apellido">
-    <input type="text" th:field="*{username}" placeholder="usuario">
-    <input type="password" th:field="*{pass}" placeholder="contraseña">
-    <input type="submit" value="Register User" >
-    <span th:utext="${successMessage}"></span>
+<div class="login-page">
+    <div class="form">
+        <img src="/images/RipePotatoes.png">
+        <form class="login-form" th:action="@{/register}" th:object="${usuario}" method="POST">
+            <input type="text" th:field="*{nombre}" placeholder="nombre">
+            <input type="text" th:field="*{apellido}" placeholder="apellido">
+            <input type="text" th:field="*{username}" placeholder="usuario">
+            <input type="password" th:field="*{pass}" placeholder="contraseña">
+            <button type="submit"  >Register User</button>
+<!--            <span th:utext="${successMessage}"></span>-->
+        </form>
 
+    </div>
 
-
-</form>
+</div>
 </body>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    var errMessage = /*[[${errorMessage}]]*/ 'default';
+    var nopeMessage = /*[[${nopeMessage}]]*/ 'default';
+    var succMessage = /*[[${successMessage}]]*/ 'default';
+    if(errMessage){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Por favor corrija los errores',
+        })
+    }
+    if(nopeMessage){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Este usuario ya existe',
+        })
+    }if(succMessage){
+        Swal.fire({
+            icon: 'success',
+            title: 'YAY',
+            text: 'Usuario Registrado',
+        })
+    }
+
+    /*]]>*/
+</script>
 </html>

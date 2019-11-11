@@ -44,10 +44,10 @@ public class AuthController {
         ModelAndView mav = new ModelAndView();
         if(bindingResult.hasErrors()){
             System.out.println(bindingResult.getAllErrors().toString());
-            mav.addObject("successMessage","Por favor correija los errores");
+            mav.addObject("errorMessage","Por favor correija los errores");
             modelMap.addAttribute("bidingResult",bindingResult);
         }else if(usuarioService.isUserAlreadyPresent(usuario)){
-            mav.addObject("successMessage","El usuario ya existe");
+            mav.addObject("nopeMessage","El usuario ya existe");
         }else{
             usuarioService.save(usuario);
             mav.addObject("successMessage","Usuario Registrado");
