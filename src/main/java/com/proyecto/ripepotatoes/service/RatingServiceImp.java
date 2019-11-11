@@ -43,4 +43,11 @@ public class RatingServiceImp implements RatingService{
     public Rating findByIdPeliApiAndIdUsuario(Integer idpeli, Integer iduser) {
         return ratingRepository.findByIdPeliApiAndIdUsuario(idpeli,iduser);
     }
+
+    @Override
+    public Integer getPercentage(Integer id_peli) {
+        if(ratingRepository.countByIdPeliApi(id_peli) == 0) return -1;
+        Double p = ratingRepository.getRatingPercentage(id_peli);
+        return p.intValue();
+    }
 }
