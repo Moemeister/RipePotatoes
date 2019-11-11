@@ -50,4 +50,9 @@ public class UsuarioServiceImp implements UsuarioService {
     public Usuario findByUsername(String username){
         return usuarioRepository.findByUsername(username);
     }
+
+    @Override
+    public void remove(Usuario usuario) {
+        usuarioRepository.delete(usuario);
+    }
 }
