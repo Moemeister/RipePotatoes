@@ -64,7 +64,7 @@ public class MovieDetailController {
     @PostMapping("/saveRating")
 
     public @ResponseBody
-    Response
+    String
     save(@RequestBody RatingDTO rating ){
         if(ratingService.isAlreadyVoted(rating.getIdPeliApi(),rating.getIdUsuario() )){
             Rating rating1 = ratingService.findByIdPeliApiAndIdUsuario(rating.getIdPeliApi(),rating.getIdUsuario());
@@ -74,7 +74,8 @@ public class MovieDetailController {
         }
 
         //incluir metodo que recibira porcentaje calculado
+        Integer percentage = ratingService.getPercentage(rating.getIdPeliApi());
 
-        return new Response(200, "OK");
+        return (percentage != -1 )? percentage + "%": "N/A";
     }
 }
