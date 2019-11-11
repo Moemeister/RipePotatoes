@@ -8,4 +8,5 @@ public interface UsuarioService {
     public Boolean isUserAlreadyPresent(Usuario usuario);
     public Usuario findOne(Integer id);
     public Usuario findByUsername(String username);
+    public void remove(Usuario usuario);
 }
