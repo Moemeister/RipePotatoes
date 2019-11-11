@@ -40,7 +40,7 @@ public class Usuario {
     @Column(name = "status")
     private String status;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "idusuario"), inverseJoinColumns = @JoinColumn(name = "id_rol"))
     private Set<Rol> roles;
 
