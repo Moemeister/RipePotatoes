@@ -5,6 +5,7 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 
@@ -20,19 +21,19 @@ public class Usuario {
     @Column(name = "idusuario")
     private int id;
 
-    @NotNull(message = "Este campo es obligatorio")
+    @NotBlank(message = "Este campo es obligatorio")
     @Column(name="nombre")
     private String nombre;
 
-    @NotNull(message = "Este campo es obligatorio")
+    @NotBlank(message = "Este campo es obligatorio")
     @Column(name="apellido")
     private String apellido;
 
-    @NotNull(message = "Este campo es obligatorio")
+    @NotBlank(message = "Este campo es obligatorio")
     @Column(name="username")
     private String username;
 
-    @NotNull(message = "Este campo es obligatorio")
+    @NotBlank(message = "Este campo es obligatorio")
     //@Length(min = 8, message = "La contraseña debe contener 8 caracteres")
     @Column(name="pass")
     private String pass;
