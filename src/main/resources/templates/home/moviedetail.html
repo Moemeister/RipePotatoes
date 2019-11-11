@@ -51,7 +51,7 @@ margin-bottom: 0.3rem;
                     <div class="card box-shadow text-center" style = "width: 800px;height:300px;">
                         <div class="card-body">
                             <h5 class="card-title">Puntaje</h5>
-                            <h1 class = "display-1" th:text="${percentage}"></h1>
+                            <h1 class = "display-1 your-choice-was per" th:text="${percentage}"></h1>
                         </div>
                         <div class="card-footer text-muted">
                             Tu valoración
@@ -90,8 +90,9 @@ margin-bottom: 0.3rem;
                     data:JSON.stringify((rating)),
                     contentType: "application/json",
                     type:"POST",
-                    success: function (response){
-                        console.log(response);
+                    success: function (string){
+                        console.log(string);
+                        $('.per').text(string);
                     }
                 })
             } else {
