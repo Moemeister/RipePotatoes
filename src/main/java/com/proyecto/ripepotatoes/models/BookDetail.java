@@ -75,4 +75,8 @@ public class BookDetail {
     public void setPublisher(String publisher) {
         this.publisher = publisher;
     }
+
+    public String getPrimaryIsbn13() {
+        return primaryIsbn13;
+    }
 }

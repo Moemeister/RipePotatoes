@@ -6,7 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name="libro_favorito")
+@Table(name="pelicula_favorita")
 @Getter
 @Setter
 public class Favorito {
