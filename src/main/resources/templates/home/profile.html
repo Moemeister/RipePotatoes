@@ -1,38 +1,64 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<head th:replace="/home/header.html :: link">
     <meta charset="UTF-8">
     <title>Perfil</title>
 </head>
 <body>
-<table>
-    <thead>
+<div th:replace="/home/navbar.html :: nav"></div>
+<div class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+    <table class="table table-hover">
+        <thead>
         <tr>
             <td>Nombre:</td>
-            <td>Apellido:</td>
-            <td>Usuario:</td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <span th:utext="${successMessage}"></span>
             <td th:text="${user.nombre}"></td>
+        </tr>
+        <tr>
+            <td>Apellido:</td>
             <td th:text="${user.apellido}"></td>
+        </tr>
+        <tr>
+            <td>Usuario:</td>
             <td th:text="${user.username}"></td>
         </tr>
-    </tbody>
-</table>
-<h3 class="center-pill">Movies</h3>
-<table class="table table-hover">
-    <tr th:each="favMovies: ${favMovies}">
-        <td><img th:src="@{https://image.tmdb.org/t/p/w200/{image}(image=${favMovies.getPoster_path()})}"></td>
-        <td th:text="${favMovies.getTitle()}"></td>
-        <td th:text="${favMovies.getOriginal_title()}"></td>
-        <td><a th:text="${favMovies.getOverview()}"></a></td>
-        </td>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <h3 class="center-pill">Movies</h3>
 
-
-    </tr>
-</table>
+    <div th:each="favMovies: ${favMovies}" class="d-flex justify-content-center">
+        <div class="card flex-md-row mb-4 box-shadow h-md-250" style="width: 800px;">
+            <img class="img-fluid card-img-right flex-auto d-none d-md-block" style="height: 18rem;width: 15rem;"
+                 th:src="@{https://image.tmdb.org/t/p/w200/{image}(image=${favMovies.getPoster_path()})}"
+                 alt="Card image cap">
+            <div class="card-body d-flex flex-column align-items-start">
+                <h3 class="mb-0">
+                    <p class="text-dark" th:text="${favMovies.getTitle()}"></p>
+                </h3>
+                <p class="h6 mb-auto" th:text="${favMovies.getOriginal_title()}"></p>
+                <p class="h6 mb-auto" th:text="${favMovies.getOverview()}"></p>
+            </div>
+            <div class="btn-group d-flex justify-content-end mr-3 " style="height: 40px;padding-top: 8px;">
+                <form th:action="@{/movieDetail}" method="post">
+                    <input type="hidden"  name="id_peli">
+                    <button type="submit" class="btn btn-info bmd-btn-fab bmd-btn-fab-sm">
+                        <span data-feather="eye"></span>
+                    </button>
+                </form>
+                <br>
+                <form th:action="@{/addFavorites}" method="post">
+                    <input type="hidden"  name="id_peli">
+                    <button type="submit" class="btn btn-info bmd-btn-fab bmd-btn-fab-sm">
+                        <span data-feather="heart"></span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="/home/footer.html :: script"></div>
 </body>
 </html>
