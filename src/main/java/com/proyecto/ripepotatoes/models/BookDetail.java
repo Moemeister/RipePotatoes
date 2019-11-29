@@ -9,7 +9,7 @@ public class BookDetail {
     public Integer price;
     public String age_group;
     public String publisher;
-    public String primaryIsbn13;
+    public String primary_isbn13;
     public String primaryIsbn10;
 
     public String getTitle() {
@@ -76,7 +76,6 @@ public class BookDetail {
         this.publisher = publisher;
     }
 
-    public String getPrimaryIsbn13() {
-        return primaryIsbn13;
-    }
-}
+    public String getPrimary_isbn13() {
+        return primary_isbn13;
+    }}

@@ -31,12 +31,15 @@ public class BooksCatalogResource {
         List<BookResult> bookResultList=bookWrapper.getResults();
         ArrayList<BookDetail> bcatalog = new ArrayList<>();
         int i=0;
+        String isbn="";
         while (i!=bookResultList.size()) {
             if(bookResultList.get(i).getBookDetails().get(0)!=null){
             bcatalog.add(bookResultList.get(i).getBookDetails().get(0));
+            isbn=bookResultList.get(i).getBookDetails().get(0).getPrimary_isbn13();
             }
             i++;
         }
+        mav.addObject("isbn",isbn);
         mav.addObject("bcatalog",bcatalog);
         mav.setViewName("home/bcatalog");
         return mav;
