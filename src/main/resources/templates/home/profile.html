@@ -9,25 +9,17 @@
 <body>
 <div th:replace="/home/navbar.html :: nav"></div>
 <div class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <td>Nombre:</td>
-            <td th:text="${user.nombre}"></td>
-        </tr>
-        <tr>
-            <td>Apellido:</td>
-            <td th:text="${user.apellido}"></td>
-        </tr>
-        <tr>
-            <td>Usuario:</td>
-            <td th:text="${user.username}"></td>
-        </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-    <h3 class="center-pill">Movies</h3>
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+        <h1 class="h2">Favoritos</h1>
+        <div class="btn-toolbar mb-1 mb-md-0">
+            <button class="btn btn-large btn-outline-secondary">
+                <div class = "mt-1 d-flex flex-row">
+                    <span data-feather="user"></span><p class = "card-text ml-1 mb-0" th:text=" ${user.nombre}"> </p>
+                    <p class = "card-text ml-1 mr-1" th:text=" ${user.apellido}"></p>
+                </div>
+            </button>
+        </div>
+    </div>
 
     <div th:each="favMovies: ${favMovies}" class="d-flex justify-content-center">
         <div class="card flex-md-row mb-4 box-shadow h-md-250" style="width: 800px;">
