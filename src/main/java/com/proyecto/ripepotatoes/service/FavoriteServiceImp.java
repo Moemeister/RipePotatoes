@@ -15,6 +15,11 @@ public class FavoriteServiceImp implements FavoriteService {
     FavoriteRepository favoriteRepository;
 
     @Override
+    public void remove(Favorito favorito) {
+        favoriteRepository.delete(favorito);
+    }
+
+    @Override
     public void save(Usuario user, Integer id) {
         Favorito favorito = new Favorito();
         favorito.setIdusuario(user.getId());
@@ -40,7 +45,7 @@ public class FavoriteServiceImp implements FavoriteService {
 
     @Override
     public Favorito findByIdPeliApi(Integer id) {
-        return null;
+        return favoriteRepository.findByIdPeliApi(id);
     }
 
     @Override

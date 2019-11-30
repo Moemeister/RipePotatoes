@@ -12,4 +12,8 @@ public interface FavoriteRepository extends JpaRepository<Favorito,Integer> {
 
     public Favorito findByIdPeliApiAndIdusuario(Integer id,Integer idusuario);
     public List<Favorito> findByIdusuario(Integer id);
+    public Favorito findByIdPeliApi(Integer id);
+
+    @Query(nativeQuery = true, value = "DELETE FROM pelicula_favorita WHERE idusuario = ?1 ")
+    public void remove(Integer id);
 }

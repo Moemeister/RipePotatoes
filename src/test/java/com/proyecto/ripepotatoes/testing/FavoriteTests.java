@@ -1,5 +1,6 @@
 package com.proyecto.ripepotatoes.testing;
 
+import com.proyecto.ripepotatoes.domain.Favorito;
 import com.proyecto.ripepotatoes.domain.Rol;
 import com.proyecto.ripepotatoes.domain.Usuario;
 import com.proyecto.ripepotatoes.repository.RolRepository;
@@ -35,16 +36,6 @@ public class FavoriteTests {
     @Test
     public void addFavoriteMovieTest() {
 
-        Integer id_peli = 475557;
-        Usuario user = userTest();
-        boolean favoriteExists = favoriteService.isFavoriteAlreadyAdded(id_peli,user);
-        assertThat(favoriteExists).isFalse();
-        favoriteService.save(user,id_peli);
-        assertThat(favoriteExists).isTrue();
-        usuarioService.remove(user);
-    }
-
-    public Usuario userTest(){
         Usuario usuario= new Usuario();
         //Rol rol = new Rol();
         usuario.setNombre("dTester");
@@ -57,6 +48,31 @@ public class FavoriteTests {
         usuarioService.save(usuario);
         Usuario userTest = usuarioService.findByUsername("d");
 
-        return userTest;
+        Integer id_peli = 123;
+
+        boolean favoriteExists = favoriteService.isFavoriteAlreadyAdded(id_peli,userTest);
+        assertThat(favoriteExists).isFalse();
+        favoriteService.save(userTest,id_peli);
+        Favorito favorite = favoriteService.findByIdPeliApi(123);
+        assertThat(favorite).isNotNull();
+        favoriteService.remove(favorite);
+
+        usuarioService.remove(userTest);
     }
+
+//    public Usuario userTest(){
+//        Usuario usuario= new Usuario();
+//        //Rol rol = new Rol();
+//        usuario.setNombre("dTester");
+//        usuario.setApellido("dTester");
+//        usuario.setUsername("d");
+//        usuario.setStatus("VERIFIED");
+//        usuario.setPass(encoder.encode("154"));
+//        Rol rol = rolRepository.findByRol("USER");
+//        usuario.setRoles(new HashSet<Rol>(Arrays.asList(rol)));
+//        usuarioService.save(usuario);
+//        Usuario userTest = usuarioService.findByUsername("d");
+//
+//        return userTest;
+//    }
 }

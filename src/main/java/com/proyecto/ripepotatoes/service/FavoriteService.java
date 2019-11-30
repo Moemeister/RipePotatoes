@@ -12,4 +12,5 @@ public interface FavoriteService {
     public Favorito findOne(Integer id);
     public Favorito findByIdPeliApi(Integer id);
     public List<Favorito> findByIdusuario(Integer id);
+    public void remove(Favorito favorito);
 }
