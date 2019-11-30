@@ -44,7 +44,7 @@ public class AuthController {
         ModelAndView mav = new ModelAndView();
         if(bindingResult.hasErrors()){
             System.out.println(bindingResult.getAllErrors().toString());
-            mav.addObject("errorMessage","Por favor correija los errores");
+            mav.addObject("errorMessage","Por favor corrija los errores");
             modelMap.addAttribute("bidingResult",bindingResult);
         }else if(usuarioService.isUserAlreadyPresent(usuario)){
             mav.addObject("nopeMessage","El usuario ya existe");

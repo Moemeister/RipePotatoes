@@ -64,8 +64,6 @@ public class ProfileController {
         Usuario user = usuarioService.findByUsername(usuario.getName());
 
         List<FavoriteBook> libros = favoriteBookService.findByIdusuario(user.getId());
-
-
         mav.addObject("libros",libros);
         mav.addObject("user",user);
         mav.setViewName("/home/favoriteBooks");
