@@ -9,29 +9,21 @@
 <body>
 <div th:replace="/home/navbar.html :: nav"></div>
 <div class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <td>Nombre:</td>
-            <td th:text="${user.nombre}"></td>
-        </tr>
-        <tr>
-            <td>Apellido:</td>
-            <td th:text="${user.apellido}"></td>
-        </tr>
-        <tr>
-            <td>Usuario:</td>
-            <td th:text="${user.username}"></td>
-        </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-    <h3 class="center-pill">Libros</h3>
-    <form action="/profile">
-        <button type="submit" class="btn btn-outline-success">Favorite movies</button>
-    </form>
-    <div th:each="libros: ${libros}" class="d-flex justify-content-center">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+        <h1 class="h2">Libros</h1>
+        <div class="btn-toolbar mb-1 mb-md-0">
+            <form action="/profile" class = "card-text ml-1 mb-0" >
+                <button type="submit" class="btn btn-outline-secondary">películas</button>
+            </form>
+            <button class="btn btn-sm btn-outline-secondary">
+                <div class = "mt-1 d-flex flex-row">
+                    <span data-feather="user"></span><p class = "card-text ml-1 mb-0" th:text=" ${user.nombre}"> </p>
+                    <p class = "card-text ml-1 mr-1" th:text=" ${user.apellido}"></p>
+                </div>
+            </button>
+        </div>
+    </div>
+   <!-- <div th:each="libros: ${libros}" class="d-flex justify-content-center">
         <div class="card flex-md-row mb-4 box-shadow h-md-250" style="width: 800px;">
 
             <div class="card-body d-flex flex-column align-items-start">
@@ -53,6 +45,18 @@
 
             </div>
 
+        </div>
+    </div>-->
+    <div th:each="libros: ${libros}" class = "d-flex justify-content-center">
+        <div class="card flex-md-row mb-4 box-shadow h-md-250" style = "width: 900px;">
+            <div class = "card-body d-flex flex-column align-items-start" style="width: 400px;">
+                <h5 class = "card-title text-info" th:text="${libros.getTitle()}"></h5>
+                <h6 class="card-subtitle mb-2 text-muted" th:text="${libros.getAutor()}"></h6>
+            </div>
+            <div class = "vl"></div>
+            <div class = "my-auto">
+                <p class = "h6 mr-4 ml-4" th:text="${libros.getDesc()}"></p>
+            </div>
         </div>
     </div>
 </div>
