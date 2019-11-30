@@ -14,7 +14,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 
-public class MoviesCatalogTest {
+public class MovieCatalogTests {
 
     @Value("${api.key}")
     private String apiKey;
@@ -26,9 +26,20 @@ public class MoviesCatalogTest {
 
     @Test
     public void fetchMoviefromAPITest() {
+        assertThat(makeAPICall()).isNotNull();
+    }
+
+
+    @Test
+    public void reviewTest() {
+        assertThat(makeAPICall().getOverview()).isNotNull();
+
+    }
+
+    public MovieDetails makeAPICall(){
         String url = "https://api.themoviedb.org/3/movie/{id_peli}?api_key="+apiKey+"&language=es-ES";
         MovieDetails movie = restTemplate.getForObject(url,MovieDetails .class,id_peli);
 
-        assertThat(movie).isNotNull();
+        return movie;
     }
 }
