@@ -52,7 +52,7 @@ public class FavoriteController {
         }
 
 
-        mav.setViewName("redirect:/profile");
+        mav.setViewName("redirect:/profileBooks");
         return mav;
     }
 
