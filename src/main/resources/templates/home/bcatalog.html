@@ -28,6 +28,9 @@
             <div class = "d-flex justify-content-end mt-4 mr-4">
                 <form th:action="@{/addFavoritesBook}" method="post">
                     <input type="hidden" th:value="${isbn}" name="isbn">
+                    <input type="hidden" th:value="${bcatalog.getTitle()}" name="title">
+                    <input type="hidden" th:value="${bcatalog.getAuthor()}" name="autor">
+                    <input type="hidden" th:value="${bcatalog.getDescription()}" name="desc">
                     <button type="submit" class="btn btn-info bmd-btn-fab bmd-btn-fab-sm">
                         <span data-feather="heart"></span>
                     </button>

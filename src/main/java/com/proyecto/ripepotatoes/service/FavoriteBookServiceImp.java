@@ -15,10 +15,13 @@ public class FavoriteBookServiceImp implements FavoriteBookService {
     FavoriteBookRepository favoriteBookRepository;
 
     @Override
-    public void save(Usuario user, String id) {
+    public void save(Usuario user, String id, String title, String autor, String desc) {
         FavoriteBook favorito = new FavoriteBook();
         favorito.setIdusuario(user.getId());
         favorito.setIdLibroApi(id);
+        favorito.setTitle(title);
+        favorito.setAutor(autor);
+        favorito.setDesc(desc);
         favoriteBookRepository.save(favorito);
     }
     @Override

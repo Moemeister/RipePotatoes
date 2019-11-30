@@ -40,13 +40,15 @@ public class FavoriteController {
         return mav;
     }
     @PostMapping("/addFavoritesBook")
-    public ModelAndView addFavoriteBook(@RequestParam(name = "isbn") String isbn, Principal principal){
+    public ModelAndView addFavoriteBook(@RequestParam(name = "isbn") String isbn, @RequestParam(name = "title") String title,
+                                        @RequestParam(name = "autor") String autor,
+                                        @RequestParam(name = "desc") String desc, Principal principal){
         ModelAndView mav = new ModelAndView();
         Usuario user = usuarioService.findByUsername(principal.getName());
         if(favoriteBookService.isFavoriteBookAlreadyAdded(isbn,user)){
             mav.addObject("successMessage","Este libro ya esta en favoritos");
         }else{
-            favoriteBookService.save(user,isbn);
+            favoriteBookService.save(user,isbn,title,autor,desc);
         }
 
 
