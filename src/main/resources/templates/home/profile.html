@@ -42,13 +42,6 @@
                 <p class="h6 mb-auto" th:text="${favMovies.getOverview()}"></p>
             </div>
             <div class="btn-group d-flex justify-content-end mr-3 " style="height: 40px;padding-top: 8px;">
-                <form th:action="@{/movieDetail}" method="post">
-                    <input type="hidden"  name="id_peli">
-                    <button type="submit" class="btn btn-info bmd-btn-fab bmd-btn-fab-sm">
-                        <span data-feather="eye"></span>
-                    </button>
-                </form>
-                <br>
             </div>
         </div>
     </div>
