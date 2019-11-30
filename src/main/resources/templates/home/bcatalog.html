@@ -14,7 +14,13 @@
             <td th:text="${bcatalog.getTitle()}"></td>
             <td th:text="${bcatalog.getAuthor()}"></td>
             <td><a th:text="${bcatalog.getDescription()}"></a></td>
-            <td th:text="${isbn}"></td>
+            <td><form th:action="@{/addFavoritesBook}" method="post">
+                <input type="hidden" th:value="${isbn}" name="isbn">
+                <button type="submit" class="btn btn-info bmd-btn-fab bmd-btn-fab-sm">
+                    <span data-feather="heart"></span>
+                </button>
+            </form></td>
+<!--            <td th:text="${isbn}"></td>-->
             <!--            <td><a th:text="${bcatalog.getPrice()}"></a></td>-->
 <!--            <td>-->
 <!--                <form th:action="@{/addFavorites}" method="post">-->
